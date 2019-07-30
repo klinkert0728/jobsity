@@ -8,82 +8,81 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let containerCell = "containerCell"
 
 class DetailCollectionViewController: UICollectionViewController {
-
+    
+    var viewModel: DetailCollectionViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        collectionView.register(UINib(nibName: MainInfoCollectionViewCell.nib, bundle: nil), forCellWithReuseIdentifier: MainInfoCollectionViewCell.identifier)
+        viewModel.getSerieDetail()
+        configureCallBacks()
+        title = viewModel.selectedSerie.name
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    private func configureCallBacks() {
+        viewModel.shouldReloadData = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        viewModel.displayError = { error in
+            print(error)
+        }
     }
-    */
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return viewModel.numberOfSectionInCollectionView
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return viewModel.numberOfItems(inSection: section)
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        
+        
+        var cell: UICollectionViewCell
+        let currentSection = viewModel.sectionForItem(at: indexPath)
+        switch currentSection {
+        case .serieMainInfo:
+            let mainInfoCell = collectionView.dequeueReusableCell(withReuseIdentifier: MainInfoCollectionViewCell.identifier, for: indexPath) as! MainInfoCollectionViewCell
+            mainInfoCell.viewModel = viewModel.createMaininfoCell()
+            cell = mainInfoCell
+        case .episodes:
+            viewModel.currentIndex = indexPath
+            let customContainer = collectionView.dequeueReusableCell(withReuseIdentifier: containerCell, for: indexPath) as! ContainerCollectionViewCell
+            if !viewModel.selectedSerie.episodes.isEmpty {
+                let episodeVc =  viewModel.episodeCollectionView
+                episodeVc.delegate = self
+                customContainer.customContainer = episodeVc.view
+            }
+            
+            cell = customContainer
+        }
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
-    }
-    */
+}
 
+extension DetailCollectionViewController: SelectEpisodeProtocol {
+    func didSelectEpisode(episode: Episode) {
+        let viewController = NavigationHelper.episodeDetail(episode: episode)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension DetailCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if viewModel.sectionForItem(at: indexPath) == .episodes {
+            return CGSize(width: collectionView.frame.width, height: 350)
+        } else {
+            return CGSize(width: collectionView.bounds.width, height: 350)
+        }
+    }
 }

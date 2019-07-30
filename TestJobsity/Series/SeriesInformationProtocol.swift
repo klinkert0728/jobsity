@@ -15,7 +15,17 @@ enum type {
 
 protocol SeriesInformation {
     var bannerUrl: String { get }
-    var rating: Double { get }
     var name: String { get }
     var cellType: type { get }
+    
+    var bannerImageUrl: URL? { get }
+}
+
+extension SeriesInformation {
+    var bannerImageUrl: URL? {
+        guard let imageUrl = URL(string: bannerUrl) else {
+            return nil
+        }
+        return imageUrl
+    }
 }

@@ -16,24 +16,38 @@ class ListCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var rating: UIButton!
-    @IBOutlet weak var favorite: UIButton!
+    @IBOutlet weak var rating: UIButton?
+    @IBOutlet weak var favorite: UIButton?
     
-    var viewModel: ListCollectionViewCellViewModel? {
+    var viewModel: SeriesInformation? {
         didSet {
             refreshUI()
         }
     }
     
     private func refreshUI() {
-        guard let viewmModel = viewModel else {
+        guard let viewModel = viewModel else {
             return
         }
-        bannerImage.af_setImage(withURL: viewmModel.bannerImageUrl)
-        name.text = viewmModel.name
-        rating.setImage(viewmModel.ratingImage, for: .normal)
-        rating.setTitle("\(viewmModel.rating)", for: .normal)
         
+        if let url = viewModel.bannerImageUrl {
+              bannerImage.af_setImage(withURL: url, placeholderImage: UIImage(named: "placeHolder"))
+        } else {
+            bannerImage.image = UIImage(named: "placeHolder")
+        }
+        
+        name.text = viewModel.name
+        
+        
+        if viewModel.cellType == .episode {
+            rating?.removeFromSuperview()
+            favorite?.removeFromSuperview()
+        } else {
+            let serieVieModel = viewModel as! ListCollectionViewCellViewModel
+            rating?.setImage(serieVieModel.ratingImage, for: .normal)
+            rating?.setTitle("\(serieVieModel.rating)", for: .normal)
+            favorite?.setImage(serieVieModel.favoriteImage, for: .normal)
+        }
     }
     
     override func awakeFromNib() {

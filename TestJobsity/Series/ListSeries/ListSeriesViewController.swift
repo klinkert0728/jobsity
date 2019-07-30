@@ -56,7 +56,7 @@ extension ListSeriresViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.identifier, for: indexPath) as! ListCollectionViewCell
         
-        if indexPath.row == viewModel.series.count - 1 {
+        if indexPath.row == viewModel.series.count - 1 && !viewModel.isDownloading {
             viewModel.getOneMorePage()
         }
         cell.viewModel = viewModel.listSeriesViewModel(for: indexPath.row)
@@ -64,7 +64,8 @@ extension ListSeriresViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let detailVc = viewModel.presentSeriesDetail(sected: indexPath.row)
+        self.navigationController?.pushViewController(detailVc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

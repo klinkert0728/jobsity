@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct ListEpisodesViewModel: SeriesInformation {
+    
+    let bannerUrl: String
+    let name: String
+    let cellType: type
+    let season: Int
+    let number: Int
+}

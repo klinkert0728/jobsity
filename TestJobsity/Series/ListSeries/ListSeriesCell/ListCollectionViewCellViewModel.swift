@@ -9,23 +9,21 @@
 import Foundation
 import UIKit
 
-struct ListCollectionViewCellViewModel {
+struct ListCollectionViewCellViewModel: SeriesInformation {
+    
     let bannerUrl: String
     let rating: Double
     let name: String
+    let cellType: type
     
-    
-    var bannerImageUrl: URL {
-        guard let imageUrl = URL(string: bannerUrl) else {
-            return URL(fileURLWithPath: "")
-        }
-        return imageUrl
-    }
-    
+    let isFavorite: Bool
     var ratingImage: UIImage? {
-        return UIImage(named: "")
+        return UIImage(named: "rating")?.imageWithTintColor(color: UIColor.white)
     }
     
+    var favoriteImage: UIImage? {
+        return isFavorite ? UIImage(named: "fav_selected")?.imageWithTintColor(color: UIColor.white) : UIImage(named: "fav_unselected")?.imageWithTintColor(color: UIColor.white)
+    }
     
     func setFavorite() {
         

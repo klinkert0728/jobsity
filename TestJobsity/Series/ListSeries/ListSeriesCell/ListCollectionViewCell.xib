@@ -50,13 +50,15 @@
                                     <constraint firstAttribute="height" constant="30" id="wih-K5-ZVF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Button">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQr-pi-2pt">
                                 <rect key="frame" x="80" y="212" width="68" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -66,6 +68,7 @@
                         <constraints>
                             <constraint firstItem="HQr-pi-2pt" firstAttribute="height" secondItem="MRA-8r-GlN" secondAttribute="height" id="2ZH-Y9-JzT"/>
                             <constraint firstItem="bAL-SY-OdM" firstAttribute="top" secondItem="vOS-bL-kJ0" secondAttribute="bottom" constant="2" id="63p-An-PWq"/>
+                            <constraint firstAttribute="bottom" secondItem="vOS-bL-kJ0" secondAttribute="bottom" priority="999" id="CDX-Z5-Hp6"/>
                             <constraint firstAttribute="trailing" secondItem="vOS-bL-kJ0" secondAttribute="trailing" constant="2" id="FmB-E6-vyi"/>
                             <constraint firstItem="MRA-8r-GlN" firstAttribute="top" secondItem="bAL-SY-OdM" secondAttribute="bottom" constant="5" id="I3X-Ff-Diy"/>
                             <constraint firstItem="MRA-8r-GlN" firstAttribute="leading" secondItem="vOS-bL-kJ0" secondAttribute="leading" id="KHW-Ov-oaL"/>

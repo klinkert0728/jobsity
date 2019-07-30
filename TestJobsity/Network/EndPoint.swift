@@ -22,6 +22,7 @@ fileprivate enum requestConstants {
 
 enum Endpoint {
     case getSeries(page: Int)
+    case getSerieDetail(id: Int)
 }
 
 extension Endpoint: APIEndPoint {
@@ -37,6 +38,8 @@ extension Endpoint: APIEndPoint {
         switch self {
         case .getSeries(page: _):
             return "shows"
+        case  .getSerieDetail(id: let id):
+            return "shows/\(id)"
         default:
             return "json"
         }
@@ -54,6 +57,8 @@ extension Endpoint: APIEndPoint {
         switch self {
         case .getSeries(page: let page):
             return ["page": page]
+        case .getSerieDetail(id: _):
+            return ["embed": "episodes"]
         default:
             return nil
         }
@@ -61,7 +66,7 @@ extension Endpoint: APIEndPoint {
     
     var customParameterEncoding: ParameterEncoding {
         switch self {
-        case .getSeries(page: _):
+        case .getSeries(page: _), .getSerieDetail(id: _):
             return URLEncoding.default
         default:
             return JSONEncoding.default

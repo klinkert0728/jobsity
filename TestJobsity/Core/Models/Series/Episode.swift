@@ -15,9 +15,10 @@ struct Episode: Codable {
     let season: Int
     let number: Int
     let image: String
+    let summary: String
     
     public enum CodingKeys: String, CodingKey {
-        case id, name, season, number, image
+        case id, name, season, number, image, summary
     }
     
     public enum ImagesKeys: String, CodingKey {
@@ -34,5 +35,6 @@ struct Episode: Codable {
         
         let additionalInfo = try container.nestedContainer(keyedBy: ImagesKeys.self, forKey: .image)
         image = try additionalInfo.decode(String.self, forKey: .medium)
+        summary = try container.decode(String.self, forKey: .summary)
     }
 }

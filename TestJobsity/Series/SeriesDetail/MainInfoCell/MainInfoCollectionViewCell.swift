@@ -28,7 +28,7 @@ class MainInfoCollectionViewCell: UICollectionViewCell {
         guard let viewModel = viewModel else {
             return
         }
-        selectedSummaryLabel.text = viewModel.summary
+        selectedSummaryLabel.attributedText = viewModel.attributedString
         bannerImage.af_setImage(withURL: viewModel.bannerImageUrl)
     }
     

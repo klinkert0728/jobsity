@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol CollectionViewViewModel {
+    var numberOfSectionInCollectionView: Int { get }
+    func numberOfItems(inSection section: Int) -> Int
+}

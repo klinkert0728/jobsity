@@ -23,7 +23,7 @@ class ListSeriesViewModel {
         static let buttonsHeight = 35
     }
     
-    private(set) var series = [Series]()
+    private(set) var series = [Serie]()
     
     func getCellHeigth(for row: Int, bounds: CGFloat) -> CGFloat {
         var height = series[row].name.height(withConstrainedWidth: bounds, font: UIFont.systemFont(ofSize: 14))
@@ -32,14 +32,16 @@ class ListSeriesViewModel {
         return height + 40
     }
     
+    
+    
     func listSeriesViewModel(for row: Int) -> ListCollectionViewCellViewModel {
         let currentSerie = series[row]
-        return ListCollectionViewCellViewModel(bannerUrl: currentSerie.imageUrl, rating: currentSerie.rating, name: currentSerie.name)
+        return ListCollectionViewCellViewModel(bannerUrl: currentSerie.imageUrl, rating: currentSerie.rating, name: currentSerie.name, cellType: .serie, isFavorite: false)
     }
     
     func getSeries() {
         isDownloading = true
-        Series.getSeries(with: page) { (result) in
+        Serie.getSeries(with: page) { (result) in
             switch result {
             case .success(let series):
                 self.series = series
@@ -55,6 +57,13 @@ class ListSeriesViewModel {
     func getOneMorePage() {
         page += 1
         getSeries()
+    }
+    
+    //MARK: Detail Series
+    
+    func presentSeriesDetail(sected row: Int) -> DetailCollectionViewController {
+        let selectedSerie = series[row]
+        return NavigationHelper.presentSerieDetail(with: selectedSerie)
     }
 }
 

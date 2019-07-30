@@ -10,8 +10,14 @@ import Foundation
 
 struct MainInfoCollectionViewModel {
     let summary: String
-    private let bannerStringUrl: String
+    let bannerStringUrl: String
+    let scheduleInfo: SeriesSchedule
     
+    
+    var attributedString: NSAttributedString? {
+        var schedule = "On \(scheduleInfo.days.joined(separator: ","))" + "\n" + summary
+        return schedule.htmlText()
+    }
     
     var bannerImageUrl: URL {
         guard let imageUrl = URL(string: bannerStringUrl) else {
