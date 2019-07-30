@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ListSeriresViewController: BaseViewController {
 
@@ -19,6 +20,7 @@ class ListSeriresViewController: BaseViewController {
         registerCell()
         collectionView.delegate = self
         collectionView.dataSource = self
+        SVProgressHUD.show()
         viewModel.getSeries()
         configureCallBacks()
     }
@@ -30,11 +32,12 @@ class ListSeriresViewController: BaseViewController {
     
     private func configureCallBacks() {
         viewModel.shouldReloadData = { [weak self] in
+            SVProgressHUD.dismiss()
             self?.collectionView.reloadData()
         }
         
         viewModel.displayError = { error in
-            print(error)
+            SVProgressHUD.showInfo(withStatus: error.localizedDescription)
         }
     }
     
