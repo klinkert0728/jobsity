@@ -12,7 +12,7 @@ Jobsity is a swift app that show the Series.
 Clone the project 
 
 ```
-pod install
+run pod install
 ```
 open TestJobsity.xcworkspace
 
