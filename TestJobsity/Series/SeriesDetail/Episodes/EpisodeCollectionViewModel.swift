@@ -60,7 +60,7 @@ extension EpisodeCollectionViewModel: CollectionViewViewModel {
     }
     
     func titleForSection(section: Int) -> String {
-        guard let seasonNumber = orderedEpisodes[section + 1] else {
+        guard let _ = orderedEpisodes[section + 1] else {
             return "Season undefined"
         }
         return "Season \(section + 1)"

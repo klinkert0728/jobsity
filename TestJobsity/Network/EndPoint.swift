@@ -40,8 +40,6 @@ extension Endpoint: APIEndPoint {
             return "shows"
         case  .getSerieDetail(id: let id):
             return "shows/\(id)"
-        default:
-            return "json"
         }
     }
     
@@ -59,8 +57,6 @@ extension Endpoint: APIEndPoint {
             return ["page": page]
         case .getSerieDetail(id: _):
             return ["embed": "episodes"]
-        default:
-            return nil
         }
     }
     
@@ -68,8 +64,6 @@ extension Endpoint: APIEndPoint {
         switch self {
         case .getSeries(page: _), .getSerieDetail(id: _):
             return URLEncoding.default
-        default:
-            return JSONEncoding.default
         }
         
     }

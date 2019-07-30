@@ -43,17 +43,9 @@ struct APIClient {
     
     func createErrorFromResponse(responseDictionary: StandardDictionary, responseError: Error?) throws -> Error  {
         
-        var message: String?
-       
-        if let errorMessage = message {
-            let errorCode = (responseError as NSError?)?.code ?? 0
-            let newError = NSError(domain: "", code: errorCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
-            return newError as Error
-        } else  {
-            guard let error = responseError else {
-                throw NSError(domain: "", code: 0, userInfo: [:])
-            }
-            return error
+        guard let error = responseError else {
+            throw NSError(domain: "", code: 0, userInfo: [:])
         }
+        return error
     }
 }

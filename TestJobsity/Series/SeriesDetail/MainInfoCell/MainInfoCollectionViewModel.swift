@@ -15,7 +15,7 @@ struct MainInfoCollectionViewModel {
     
     
     var attributedString: NSAttributedString? {
-        var schedule = "On \(scheduleInfo.days.joined(separator: ","))" + "\n" + summary
+        let schedule = "On \(scheduleInfo.days.joined(separator: ","))" + "\n" + summary
         return schedule.htmlText()
     }
     
