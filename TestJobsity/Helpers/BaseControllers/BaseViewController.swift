@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
     }
     
 
+    /// Base configure appearance for ViewController
     func configureApearance() {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true

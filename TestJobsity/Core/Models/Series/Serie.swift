@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
+/// Serie model that will represent a serie across the app.
 struct Serie: Codable {
     
     let name: String
@@ -57,6 +59,12 @@ struct Serie: Codable {
         episodes = try additionalInfo?.decodeIfPresent([Episode].self, forKey: .episodes) ?? []
     }
     
+    /// Array of series that is being return from the API based on an specific page
+    ///
+    /// - Parameters:
+    ///   - page: value to determine which page of the API should the app request
+    ///   - completionHandler: Array of serie based on a page
+    
     static func getSeries(with page: Int, completionHandler: @escaping ResultClosure<[Serie]>) {
         
         APIClient.sharedClient.requestJSONObject(endpoint: .getSeries(page: page)) { (result) in
@@ -79,6 +87,12 @@ struct Serie: Codable {
         }
     }
     
+    /// Get a serie detail infromation
+    ///
+    /// - Parameters:
+    ///   - id: selected serie id
+    ///   - completionHandler: clousure that will contain the detailed information about the serie
+    
     static func getDetail(with id: Int, completionHandler: @escaping ResultClosure<Serie>) {
         APIClient.sharedClient.requestJSONObject(endpoint: .getSerieDetail(id: id)) { (result) in
             switch result {
@@ -100,3 +114,4 @@ struct Serie: Codable {
         }
     }
 }
+

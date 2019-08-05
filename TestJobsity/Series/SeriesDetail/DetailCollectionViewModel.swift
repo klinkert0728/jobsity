@@ -27,6 +27,7 @@ class DetailCollectionViewModel {
     
     private let collectionSections: [sections] = [.serieMainInfo, .episodes]
     
+    /// Get the serie detail from the API, sending an Id
     func getSerieDetail() {
         Serie.getDetail(with: selectedSerie.id) { (result) in
             switch result {
@@ -44,6 +45,7 @@ class DetailCollectionViewModel {
         return MainInfoCollectionViewModel(summary: selectedSerie.summary, bannerStringUrl: selectedSerie.imageUrl, scheduleInfo: selectedSerie.schedule)
     }
     
+    /// Contains the episodes ordered by season.
     private(set) lazy var episodeCollectionView: EpisodeCollectionViewController = {
         var episodeVc = NavigationHelper.episodesForSerie(series: selectedSerie)
         return episodeVc

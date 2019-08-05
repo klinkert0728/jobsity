@@ -19,6 +19,10 @@ class EpisodeCollectionViewModel {
         orderEpisodesBySeason()
     }
     
+    /// Creates the Episodes View model to interact with the view
+    ///
+    /// - Parameter indexPath: the current index path for the episode
+    /// - Returns: a viewModel that cotains all the necessary information about the episode
     func listEpisodesViewModel(for indexPath: IndexPath) -> ListEpisodesViewModel? {
         
         guard let currentEpisode = orderedEpisodes[indexPath.section + 1]?[indexPath.row] else {
@@ -28,6 +32,7 @@ class EpisodeCollectionViewModel {
         return ListEpisodesViewModel(bannerUrl: currentEpisode.image, name: currentEpisode.name, cellType: .episode, season: currentEpisode.season, number: currentEpisode.number)
     }
     
+    /// Orders the episodes by season
     func orderEpisodesBySeason() {
         for episode in episodes {
             guard var currentArray = orderedEpisodes[episode.season] else {
@@ -40,6 +45,10 @@ class EpisodeCollectionViewModel {
     }
     
     
+    /// Get an especific episode based on user selection
+    ///
+    /// - Parameter indexPath: indexpath for user selection
+    /// - Returns: The selected episode to be displayed in detail.
     func selectedEpisode(for indexPath: IndexPath) -> Episode? {
         guard let selected = orderedEpisodes[indexPath.section + 1]?[indexPath.row] else {
             return nil

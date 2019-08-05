@@ -15,6 +15,7 @@ class BaseTableViewController: UITableViewController {
         configureAppearance()
     }
     
+    /// Base configure Appearance method for tableViews
     func configureAppearance() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100

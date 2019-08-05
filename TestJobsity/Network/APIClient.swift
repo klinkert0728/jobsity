@@ -13,6 +13,12 @@ struct APIClient {
     
     static let sharedClient = APIClient()
     
+    /// Request a json object from the API.
+    ///
+    /// - Parameters:
+    ///   - endpoint: an object that contains all the information about the API that is going to be called
+    ///   - completionHandler: A clousure that can return any type of object
+    
     func requestJSONObject(endpoint: Endpoint, completionHandler: @escaping ResultClosure<Any>) {
         
         Alamofire.request(endpoint.url, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.customParameterEncoding, headers: endpoint.customHTTPHeaders).responseJSON(completionHandler: { (response: DataResponse<Any>) in
@@ -30,6 +36,13 @@ struct APIClient {
             }
         })
     }
+    
+    /// Unique function where the API error calls are being handle
+    ///
+    /// - Parameters:
+    ///   - responseDictionary: The response dictionary from the API call
+    ///   - responseError: In case we have an error we pass the error as param
+    /// - Returns: return different types of error depending of the exception
     
     func responseError(responseDictionary: StandardDictionary, responseError: Error?) -> Error {
         do {
