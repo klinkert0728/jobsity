@@ -19,6 +19,8 @@ class ListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rating: UIButton?
     @IBOutlet weak var favorite: UIButton?
     
+    var selectedFavorite: (() -> ())?
+    
     var viewModel: SeriesInformation? {
         didSet {
             refreshUI()
@@ -38,7 +40,6 @@ class ListCollectionViewCell: UICollectionViewCell {
         
         name.text = viewModel.name
         
-        
         if viewModel.cellType == .episode {
             rating?.removeFromSuperview()
             favorite?.removeFromSuperview()
@@ -52,7 +53,9 @@ class ListCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    @IBAction func setFavoriteSerie(_ sender: Any) {
+        selectedFavorite?()
+    }
 }

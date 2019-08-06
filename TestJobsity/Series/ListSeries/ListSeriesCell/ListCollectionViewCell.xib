@@ -54,6 +54,9 @@
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="setFavoriteSerie:" destination="gTV-IL-0wX" eventType="touchUpInside" id="euw-rL-DGM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQr-pi-2pt">
                                 <rect key="frame" x="80" y="212" width="68" height="30"/>

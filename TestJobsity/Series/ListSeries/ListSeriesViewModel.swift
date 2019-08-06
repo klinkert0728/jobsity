@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class ListSeriesViewModel {
     
@@ -24,6 +25,7 @@ class ListSeriesViewModel {
     }
     
     private(set) var series = [Serie]()
+    private var favoriteSeries = [SerieObject]()
     var filtedSeries = [Serie]()
     var isSearching = false
     
@@ -51,7 +53,8 @@ class ListSeriesViewModel {
     
     func listSeriesViewModel(for row: Int) -> ListCollectionViewCellViewModel {
         let currentSerie = !isSearching ? series[row] : filtedSeries[row]
-        return ListCollectionViewCellViewModel(bannerUrl: currentSerie.imageUrl, rating: currentSerie.rating, name: currentSerie.name, cellType: .serie, isFavorite: false)
+        let isFavorite = favoriteSeries.contains(where: { $0.id == currentSerie.id })
+        return ListCollectionViewCellViewModel(bannerUrl: currentSerie.imageUrl, rating: currentSerie.rating, name: currentSerie.name, cellType: .serie, isFavorite: isFavorite)
     }
     
     
@@ -99,6 +102,63 @@ class ListSeriesViewModel {
         }
         filtedSeries.removeAll()
         filtedSeries = series.filter({$0.name.contains(searchText)})
+    }
+    
+    //MARK: Persist Fav series
+    
+    func save(indexpath row: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let currentSerie = isSearching ? filtedSeries[row] : series[row]
+        
+        if favoriteSeries.contains(where: { $0.id == currentSerie.id }) {
+            deleteFavSerie(serie: currentSerie)
+            getFavoriteSeries()
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: "SerieObject", in: managedContext) else {
+            return
+        }
+        
+        let serieObject = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        serieObject.setValue(currentSerie.name, forKeyPath: "name")
+        serieObject.setValue(currentSerie.id, forKeyPath: "id")
+        serieObject.setValue(currentSerie.rating, forKeyPath: "rating")
+        serieObject.setValue(currentSerie.imageUrl, forKeyPath: "image")
+        
+        
+        do {
+            try managedContext.save()
+            getFavoriteSeries()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func getFavoriteSeries() {
+        
+        SerieObject.getFavoriteSeries { (result) in
+            switch result {
+            case .success(let serie):
+                self.favoriteSeries = serie
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    func deleteFavSerie(serie: Serie) {
+        guard let serieIndex = favoriteSeries.firstIndex(where: { $0.id == serie.id} ) else {
+            return
+        }
+        let serieToDelete = favoriteSeries[serieIndex]
+        serieToDelete.deleteSerie()
     }
 }
 

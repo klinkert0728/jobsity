@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B114C6B22F87A5700E7EC89 /* Jobsity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B114C6922F87A5700E7EC89 /* Jobsity.xcdatamodeld */; };
 		0B89789222EE91EF00C8BE9E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89789122EE91EF00C8BE9E /* APIClient.swift */; };
 		0B89789422EE924300C8BE9E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89789322EE924300C8BE9E /* Result.swift */; };
 		0B89789622EE925800C8BE9E /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89789522EE925800C8BE9E /* EndPoint.swift */; };
@@ -48,6 +49,9 @@
 		0BADFFAB22EB5A09000143A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BADFFAA22EB5A09000143A1 /* Assets.xcassets */; };
 		0BADFFAE22EB5A09000143A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BADFFAC22EB5A09000143A1 /* LaunchScreen.storyboard */; };
 		0BADFFB922EB5A09000143A1 /* TestJobsityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BADFFB822EB5A09000143A1 /* TestJobsityTests.swift */; };
+		0BC6619122F99D1F0007AE6E /* FavoriteSerieCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC6619022F99D1F0007AE6E /* FavoriteSerieCollectionViewController.swift */; };
+		0BC6619322F99D720007AE6E /* FavoriteSerieCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC6619222F99D720007AE6E /* FavoriteSerieCollectionViewModel.swift */; };
+		0BC6619522F9A0390007AE6E /* SeriesObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC6619422F9A0390007AE6E /* SeriesObjectExtension.swift */; };
 		79E5E548AAD44105EA4F8071 /* Pods_TestJobsity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C1C27E3416EB0151DBD999 /* Pods_TestJobsity.framework */; };
 		A9D1D08FBF9F5F79EB346FFF /* Pods_TestJobsityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD454DDA95DFA49A170C9FA2 /* Pods_TestJobsityTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B114C6A22F87A5700E7EC89 /* Jobsity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jobsity.xcdatamodel; sourceTree = "<group>"; };
 		0B89789122EE91EF00C8BE9E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		0B89789322EE924300C8BE9E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		0B89789522EE925800C8BE9E /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
@@ -108,6 +113,9 @@
 		0BADFFB422EB5A09000143A1 /* TestJobsityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestJobsityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BADFFB822EB5A09000143A1 /* TestJobsityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJobsityTests.swift; sourceTree = "<group>"; };
 		0BADFFBA22EB5A09000143A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BC6619022F99D1F0007AE6E /* FavoriteSerieCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSerieCollectionViewController.swift; sourceTree = "<group>"; };
+		0BC6619222F99D720007AE6E /* FavoriteSerieCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSerieCollectionViewModel.swift; sourceTree = "<group>"; };
+		0BC6619422F9A0390007AE6E /* SeriesObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesObjectExtension.swift; sourceTree = "<group>"; };
 		1C119D29E4FDF3654CF1F7C6 /* Pods-TestJobsity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestJobsity.debug.xcconfig"; path = "Target Support Files/Pods-TestJobsity/Pods-TestJobsity.debug.xcconfig"; sourceTree = "<group>"; };
 		31C1C27E3416EB0151DBD999 /* Pods_TestJobsity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestJobsity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C43049AD69D8979DF8D9B0 /* Pods-TestJobsityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestJobsityTests.debug.xcconfig"; path = "Target Support Files/Pods-TestJobsityTests/Pods-TestJobsityTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				0B89789E22EEA64F00C8BE9E /* Series */,
+				0B114C6922F87A5700E7EC89 /* Jobsity.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +171,7 @@
 				0B89789C22EE9BF400C8BE9E /* Serie.swift */,
 				0B89789F22EEA65D00C8BE9E /* SeriesSchedule.swift */,
 				0B8978C122EF48F200C8BE9E /* Episode.swift */,
+				0BC6619422F9A0390007AE6E /* SeriesObjectExtension.swift */,
 			);
 			path = Series;
 			sourceTree = "<group>";
@@ -180,6 +190,7 @@
 				0B8978C622EF4B6000C8BE9E /* SeriesInformationProtocol.swift */,
 				0BADFFA722EB5A08000143A1 /* Main.storyboard */,
 				0B8978BC22EF46BB00C8BE9E /* ListSeries */,
+				0BC6618F22F99CFC0007AE6E /* FavoriteSerie */,
 				0B8978BB22EF461900C8BE9E /* SeriesDetail */,
 				0B8978D822EF793700C8BE9E /* CollectionViewController.swift */,
 			);
@@ -347,6 +358,15 @@
 				0BADFFBA22EB5A09000143A1 /* Info.plist */,
 			);
 			path = TestJobsityTests;
+			sourceTree = "<group>";
+		};
+		0BC6618F22F99CFC0007AE6E /* FavoriteSerie */ = {
+			isa = PBXGroup;
+			children = (
+				0BC6619022F99D1F0007AE6E /* FavoriteSerieCollectionViewController.swift */,
+				0BC6619222F99D720007AE6E /* FavoriteSerieCollectionViewModel.swift */,
+			);
+			path = FavoriteSerie;
 			sourceTree = "<group>";
 		};
 		A55CBA9BDA2AB2195577765A /* Pods */ = {
@@ -554,6 +574,7 @@
 				0B89789D22EE9BF400C8BE9E /* Serie.swift in Sources */,
 				0B89791722EFD6AF00C8BE9E /* EpisodeDetailTableViewCell.swift in Sources */,
 				0B8978BA22EF454700C8BE9E /* BaseViewController.swift in Sources */,
+				0BC6619522F9A0390007AE6E /* SeriesObjectExtension.swift in Sources */,
 				0B8978C722EF4B6000C8BE9E /* SeriesInformationProtocol.swift in Sources */,
 				0B89789622EE925800C8BE9E /* EndPoint.swift in Sources */,
 				0B89791922EFD6C300C8BE9E /* EpisodeDetailTableViewCellViewModel.swift in Sources */,
@@ -562,15 +583,18 @@
 				0B8978D022EF53CE00C8BE9E /* EpisodeCollectionViewModel.swift in Sources */,
 				0B8978AB22EF144100C8BE9E /* ListCollectionViewCellViewModel.swift in Sources */,
 				0B8978D622EF643A00C8BE9E /* MainInfoCollectionViewModel.swift in Sources */,
+				0BC6619322F99D720007AE6E /* FavoriteSerieCollectionViewModel.swift in Sources */,
 				0B8978B822EF35F900C8BE9E /* StringExtension.swift in Sources */,
 				0B8978DB22EF7A0800C8BE9E /* ContainerCollectionViewCell.swift in Sources */,
 				0B8978B622EF34B900C8BE9E /* CollectionViewViewModel.swift in Sources */,
+				0BC6619122F99D1F0007AE6E /* FavoriteSerieCollectionViewController.swift in Sources */,
 				0B89789422EE924300C8BE9E /* Result.swift in Sources */,
 				0B8978CC22EF50F000C8BE9E /* NavigationHelper.swift in Sources */,
 				0B89791322EFD58500C8BE9E /* EpisodeDetailTableViewController.swift in Sources */,
 				0B89789222EE91EF00C8BE9E /* APIClient.swift in Sources */,
 				0B8978BE22EF46F300C8BE9E /* DetailCollectionViewController.swift in Sources */,
 				0B89789A22EE947700C8BE9E /* Error.swift in Sources */,
+				0B114C6B22F87A5700E7EC89 /* Jobsity.xcdatamodeld in Sources */,
 				0B89789822EE92D100C8BE9E /* APIEndPoint.swift in Sources */,
 				0B89791022EFC12900C8BE9E /* CollectionViewSectionHeader.swift in Sources */,
 				0B8BEBA622F06D270003EDD6 /* UIimageExtension.swift in Sources */,
@@ -844,6 +868,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0B114C6922F87A5700E7EC89 /* Jobsity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0B114C6A22F87A5700E7EC89 /* Jobsity.xcdatamodel */,
+			);
+			currentVersion = 0B114C6A22F87A5700E7EC89 /* Jobsity.xcdatamodel */;
+			path = Jobsity.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0BADFF9822EB5A08000143A1 /* Project object */;
 }

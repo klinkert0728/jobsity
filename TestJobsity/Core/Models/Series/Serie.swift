@@ -40,6 +40,17 @@ struct Serie: Codable {
         case episodes
     }
     
+    init(currentId: Int) {
+        id = currentId
+        name = ""
+        imageUrl = ""
+        summary = ""
+        genres = []
+        rating = 0.0
+        episodes = []
+        schedule = SeriesSchedule()
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)

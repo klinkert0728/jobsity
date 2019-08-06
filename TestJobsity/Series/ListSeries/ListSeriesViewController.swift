@@ -43,6 +43,8 @@ class ListSeriresViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.isSearching = false
+        viewModel.getFavoriteSeries()
+        collectionView.reloadData()
     }
     
     private func configureCallBacks() {
@@ -85,6 +87,10 @@ extension ListSeriresViewController: UICollectionViewDataSource, UICollectionVie
             viewModel.getOneMorePage()
         }
         cell.viewModel = viewModel.listSeriesViewModel(for: indexPath.row)
+        cell.selectedFavorite = { [weak self] in
+            self?.viewModel.save(indexpath: indexPath.row)
+            self?.collectionView.reloadData()
+        }
         
         return cell
     }

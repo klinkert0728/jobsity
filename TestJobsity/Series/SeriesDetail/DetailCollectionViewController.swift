@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 private let containerCell = "containerCell"
 
@@ -29,6 +30,7 @@ class DetailCollectionViewController: UICollectionViewController {
         }
         
         viewModel.displayError = { error in
+            SVProgressHUD.showInfo(withStatus: error.localizedDescription)
             print(error)
         }
     }
